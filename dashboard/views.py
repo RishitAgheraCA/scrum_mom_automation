@@ -9,3 +9,7 @@ class HomePageView(View):
 
     def post(self, request):
         return render(request, 'dashboard/home_page.html')
+
+class TaskPageView(View):
+    def get(self, request):
+        return render(request, 'dashboard/task_page.html')

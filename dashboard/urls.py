@@ -3,7 +3,9 @@ from django.conf.urls.static import static
 from django.urls import path
 from django.views.generic.base import RedirectView
 from dashboard.views import HomePageView
+from dashboard.views import TaskPageView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
+    path('task',TaskPageView.as_view(),name='home')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
