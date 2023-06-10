@@ -1,0 +1,284 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Minute of Meeting</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 20px;-->
+<!--            background: linear-gradient(135deg, #FF512F, #F09819);-->
+<!--        }-->
+
+<!--        h1 {-->
+<!--            color: #fff;-->
+<!--            margin-bottom: 20px;-->
+<!--        }-->
+
+<!--        .controls {-->
+<!--            margin-bottom: 20px;-->
+<!--        }-->
+
+<!--        .table-container {-->
+<!--            display: flex;-->
+<!--        }-->
+
+<!--        .employees-table,-->
+<!--        .recordings-table {-->
+<!--            flex: 1;-->
+<!--            margin-right: 20px;-->
+<!--            background-color: #fff;-->
+<!--            border-radius: 4px;-->
+<!--            overflow: hidden;-->
+<!--        }-->
+
+<!--        table {-->
+<!--            width: 100%;-->
+<!--            border-collapse: collapse;-->
+<!--        }-->
+
+<!--        th,-->
+<!--        td {-->
+<!--            padding: 10px;-->
+<!--            border: 1px solid #ccc;-->
+<!--        }-->
+
+<!--        th {-->
+<!--            background-color: #f2f2f2;-->
+<!--        }-->
+
+<!--        .button {-->
+<!--            display: inline-block;-->
+<!--            padding: 10px 20px;-->
+<!--            background-color: #007bff;-->
+<!--            color: #fff;-->
+<!--            border: none;-->
+<!--            cursor: pointer;-->
+<!--            font-size: 16px;-->
+<!--            border-radius: 4px;-->
+<!--        }-->
+
+<!--        .button:hover {-->
+<!--            background-color: #0056b3;-->
+<!--        }-->
+
+<!--        .fade-in {-->
+<!--            animation: fade-in 1s ease-in-out;-->
+<!--        }-->
+
+<!--        @keyframes fade-in {-->
+<!--            0% {-->
+<!--                opacity: 0;-->
+<!--            }-->
+<!--            100% {-->
+<!--                opacity: 1;-->
+<!--            }-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Minute of Meeting</h1>-->
+
+<!--    <div class="controls">-->
+<!--        <button id="startBtn" class="button">Start</button>-->
+<!--        <button id="stopBtn" class="button">Stop</button>-->
+<!--        <button id="restartBtn" class="button">Restart</button>-->
+<!--    </div>-->
+
+<!--    <div class="table-container">-->
+<!--        <div class="employees-table">-->
+<!--            <table>-->
+<!--                <thead>-->
+<!--                    <tr>-->
+<!--                        <th>Employees</th>-->
+<!--                    </tr>-->
+<!--                </thead>-->
+<!--                <tbody id="employeesBody">-->
+<!--                    <tr>-->
+<!--                        <td>Employee 1</td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td>Employee 2</td>-->
+<!--                    </tr>-->
+<!--                    &lt;!&ndash; Add more employees as needed &ndash;&gt;-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
+
+<!--        <div class="recordings-table">-->
+<!--            <table>-->
+<!--                <thead>-->
+<!--                    <tr>-->
+<!--                        <th>Recordings</th>-->
+<!--                    </tr>-->
+<!--                </thead>-->
+<!--                <tbody id="recordingsBody">-->
+<!--                    &lt;!&ndash; Table rows will be dynamically added here &ndash;&gt;-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <script>-->
+<!--        var startButton = document.getElementById("startBtn");-->
+<!--        var stopButton = document.getElementById("stopBtn");-->
+<!--        var restartButton = document.getElementById("restartBtn");-->
+<!--        var employeesBody = document.getElementById("employeesBody");-->
+<!--        var recordingsBody = document.getElementById("recordingsBody");-->
+
+<!--        startButton.addEventListener("click", function() {-->
+<!--            console.log("Start button clicked");-->
+<!--            // Add your start functionality here-->
+<!--        });-->
+
+<!--        stopButton.addEventListener("click", function() {-->
+<!--            console.log("Stop button clicked");-->
+<!--            // Add your stop functionality here-->
+<!--        });-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minutes of Meeting</title>
+    <style>
+        /* CSS styling goes here */
+
+        body {
+            background: linear-gradient(to bottom, #FDB813, #FF5722);
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .employee-table {
+            width: 60%;
+        }
+
+        .recording-table {
+            width: 38%;
+        }
+
+        .employee-table,
+        .recording-table {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .recording-table th,
+        .recording-table td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .text-window {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            min-height: 200px;
+        }
+
+        .meeting-details {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .meeting-details th,
+        .meeting-details td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Minutes of Meeting</h1>
+    </div>
+
+    <div class="buttons">
+        <button id="start">Start Recording</button>
+        <button id="stop">Stop Recording</button>
+        <button id="restart">Restart Recording</button>
+    </div>
+
+    <div class="table-container">
+        <div class="employee-table">
+            <h2>Employees</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Employee names will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="recording-table">
+            <h2>Recordings</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Recordings will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="text-window">
+        <h2>Real-time Transcription</h2>
+        <div id="transcription"></div>
+    </div>
+
+    <div class="meeting-details">
+        <h2>Meeting Details</h2>
+        <table>
+            <tr>
+                <th>Date</th>
+                <td>May 30, 2023</td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td>10:00 AM - 11:30 AM</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>Conference Room A</td>
+            </tr>
+            <tr>
+                <th>Agenda</th>
+                <td>Discuss project updates and next steps</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        // JavaScript code goes here
+        // You can add event listeners and functionality for the buttons, etc.
+    </script>
+</body>
+</html>

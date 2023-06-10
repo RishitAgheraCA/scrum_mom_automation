@@ -12,4 +12,4 @@ class HomePageView(View):
 
 class TaskPageView(View):
     def get(self, request):
-        return render(request, 'dashboard/task_page.html')
+        return render(request, 'dashboard/tabulator.html')

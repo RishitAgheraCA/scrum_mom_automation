@@ -7,5 +7,5 @@ from dashboard.views import TaskPageView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
-    path('task',TaskPageView.as_view(),name='home')
+    path('task',TaskPageView.as_view(),name='task')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
