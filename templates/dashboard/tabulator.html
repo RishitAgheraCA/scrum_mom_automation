@@ -1,0 +1,30 @@
+{% extends "dashboard/home_page.html" %}
+{% block content %}
+<div class="row">
+<div class="col-md-3">
+    <form method="POST" id="post-form">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success" id="ajax_load">Load Data</button>
+    </form>
+</div>
+    <div class="col-md-3">
+        <button type="button" class="btn btn-danger" id="reset_btn">Reset</button>
+    </div>
+</div>
+<div class="col-md-3">
+    <h4 class="display-4">Persons</h4>
+    <div id="example-table-1"></div>
+</div>
+<div class="col-md-3">
+    <h4 class="display-4">Tasks</h4>
+    <div id="example-table-2"></div>
+</div>
+<div class="col-md-3">
+    <h4 class="display-4">Status</h4>
+    <div id="example-table-3"></div>
+</div>
+<div class="col-md-3">
+    <h4 class="display-4">Time</h4>
+    <div id="example-table-4"></div>
+</div>
+{% endblock %}
