@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Template</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card mt-4 text-center">
+                    <div class="card-header bg-primary text-white">
+                        <img src="{{ img_path }}" alt="Company Logo" height="250">
+                       <h3 class="card-title d-inline ml-2">{{company}}</h3>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title">Hello, {{ username }}</h1>
+                        <p class="card-text">{{ task }}</p>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <p>&copy; 2023 {{ company }}. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,4 +1,4 @@
- {% load static %}
+{% load static %}
 <!doctype html>
 <html>
     <head>
@@ -21,7 +21,11 @@
                                 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
                                 <link type="text/css" rel="stylesheet" href=" https://cdn.datatables.net/rowreorder/1.2.6/css/rowReorder.dataTables.min.css">
                                 <link rel="stylesheet" type="text/css" href="{%  static 'lib/tabledragdrop.css' %}">
+                                <link rel="stylesheet" type="text/css" href="{%  static 'css/table.css' %}">
+<!--                                <link rel="stylesheet" type="text/css" href="{%  static 'css/home_main.css' %}">-->
                                 <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.0.5/css/tabulator_midnight.min.css" rel="stylesheet">
+                                <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+                                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.css" integrity="sha512-MpdEaY2YQ3EokN6lCD6bnWMl5Gwk7RjBbpKLovlrH6X+DRokrPRAF3zQJl1hZUiLXfo2e9MrOt+udOnHCAmi5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                                 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
         <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
@@ -83,11 +87,9 @@
 <h3>Recordings</h3>
 <ol id="recordingsList"></ol>
     <div class="container">
-            <div class="row">
-                {% block content %}
-                {% endblock %}
-        </div>
-        </div>
+            {% block content %}
+            {% endblock %}
+    </div>
 </div>
     <script type='text/javascript' src='{% static "js/jquery.js" %}'></script>
     <script src="{% static 'js/manage-audio.js' %}"></script>
@@ -97,7 +99,7 @@
 </html>
         <div class="sidebar">
             <div class="profile_info">
-                <img src="https://i.imgur.com/iQpdHb2.jpg" class="profile_image" alt="">
+                <img src="{%  static 'logo.jpeg' %}" class="profile_image" alt="">
                 <h4>Williamson</h4>
             </div>
             <a href="#"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
@@ -115,6 +117,11 @@
     <script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.3.3/js/dataTables.fixedColumns.min.js"></script>
     <script src="{% static  'lib/tabledragdrop.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.0.5/js/tabulator.min.js"></script>
-    <script src="{% static  'js/tabulator.js' %}"></script>
+<!--    <script src="{% static  'js/tabulator.js' %}"></script>-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/TableDnD/1.0.5/jquery.tablednd.min.js" integrity="sha512-uzT009qnQ625C6M8eTX9pvhFJDn/YTYChW+YTOs9bZrcLN70Nhj82/by6yS9HG5TvjVnZ8yx/GTD+qUKyQ9wwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js" integrity="sha512-JnjG+Wt53GspUQXQhc+c4j8SBERsgJAoHeehagKHlxQN+MtCCmFDghX9/AcbkkNRZptyZU4zC8utK59M5L45Iw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{% static  'js/table.js' %}"></script>
+    <script src="{% static  'js/sahil_2.js' %}"></script>
     </body>
 </html>

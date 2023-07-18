@@ -5,9 +5,11 @@ from django.views.generic.base import RedirectView
 from dashboard.views import HomePageView, SubmitView
 from dashboard.views import HomePageView
 from dashboard.views import TaskPageView
+from dashboard.views import MainPageView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
     path('task',TaskPageView.as_view(),name='task'),
-    path('load',TaskPageView.as_view(),name='task_load')
+    path('load',TaskPageView.as_view(),name='task_load'),
+    path('main',MainPageView.as_view(),name='task_main')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

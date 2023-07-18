@@ -1,0 +1,47 @@
+{% extends "dashboard/home_page.html" %}
+{% block content %}
+<div class="row">
+<div class="col-md-9">
+    <div>
+    <table id="recordings-table" class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Text</th>
+            </tr>
+        </thead>
+        <tbody>
+        <form method="POST" id="task_user_email">
+            {% csrf_token %}
+            {% for value in data %}
+              {% with forloop.counter as outer_counter %}
+                 <tr id="row1">
+                     <td>{{value.name}}</td>
+                     <td><textarea name="task_{{outer_counter}}" id="" cols="30" rows="5">{{ value.task }}</textarea></td>
+                     <input type="hidden" name="name_{{outer_counter}}" value="{{ value.name }}">
+                 </tr>
+             {% endwith %}
+            {% endfor %}
+            <label><button type="submit" class="btn btn-success">Send</button></label>
+        </form>
+            <!-- Add more rows for other employees -->
+        </tbody>
+    </table>
+</div>
+</div>
+    <div class="col-md-3">
+    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+      <div class="card-header"><h4>Meeting Details</h4></div>
+      <div class="card-body">
+        <h6>Date:<label id="date_label"></label></h6>
+        <h6>Current Time: <label id="time_label"></label></h6>
+        <h6><label>Meeting Room A</label></h6>
+        <h6><label>Agenda: Discuss project updates and next steps</label></h6>
+      </div>
+      </div>
+      </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

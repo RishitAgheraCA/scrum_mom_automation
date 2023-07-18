@@ -250,3 +250,11 @@ label #sidebar_btn:hover {
         display: block;
     }
 }
+
+.alertify-notifier .ajs-message.ajs-success{
+    color: #fff;
+}
+
+.alertify-notifier .ajs-message.ajs-error{
+    color: #fff;
+}

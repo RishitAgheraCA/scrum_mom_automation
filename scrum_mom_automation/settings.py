@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'speechtotext',
     'inferencemodelling',
-    'dashboard'
+    'dashboard',
+    'django.contrib.sites',
 ]
 
 MIDDLEWARE = [
@@ -114,6 +115,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+SITE_ID = 1
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -131,3 +133,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, "static/"),
 # )
+
+DEBUG = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST= 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ssaramsa@gmail.com'
+EMAIL_HOST_PASSWORD = 'psxehzkdenuuerok'
+# EMAIL_HOST_PASSWORD = 'ffegmgwcdfiqzoyx'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp-mail.outlook.com'
+# EMAIL_HOST_USER = 'c0859401@mylambton.ca'
+# EMAIL_HOST_PASSWORD ='2qN(RauY2v'

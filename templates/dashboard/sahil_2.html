@@ -1,0 +1,65 @@
+{% extends "dashboard/home_page.html" %}
+{% block content %}
+<div class="col-md-6">
+    <div class="card_2">
+        <h4>Meeting Details</h4>
+        <p>Date:<label id="date_label"></label></p>
+        <p>Current Time: <label id="time_label"></label></p>
+        <p>Location: Meeting Room A</p>
+        <p>Agenda: Discuss project updates and next steps</p>
+</div>
+</div>
+<div class="col-md-6">
+    <div id="button-container-2">
+    <button id="download-csv">Download CSV</button>
+<!--    <button id="download-json">Download JSON</button>-->
+    <button id="download-xlsx">Download XLSX</button>
+    <button id="download-pdf">Download PDF</button>
+<!--    <button id="download-html">Download HTML</button>-->
+  </div>
+    <table id="recordings-table" class="draggable">
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Text</th>
+            </tr>
+        </thead>
+        <tbody>
+        <form action="" method="post" id="task_user_email">
+            {% for value in data %}
+              {% with forloop.counter as outer_counter %}
+                 <tr id="row1">
+                    <td class="popup" onclick="showPopup('emp1')">{{ value.name }}
+                        <span class="popuptext" id="emp1">Employee Number:{{ value.Emp_num }}<br>Department: {{ value.Department }}<br>Position: {{ value.Postion }}</span>
+                        <input type="hidden" name="name_{{outer_counter}}" value="{{ value.name }}">
+                    </td>
+                    <td><textarea name="task_{{outer_counter}}" id="" cols="30" rows="5">{{ value.task }}</textarea></td>
+                 </tr>
+             {% endwith %}
+            {% endfor %}
+            <label><button type="submit" class="btn btn-success">Success</button></label>
+        </form>
+            <!-- Add more rows for other employees -->
+        </tbody>
+    </table>
+</div>
+
+<div class="button-container">
+      <button id="start-btn">Play</button>
+      <button id="stop-btn">Stop</button>
+      <button id="save-btn">Download</button>
+</div>
+<div class="speech-window">
+    <h4>Speech-Window</h4>
+
+    <!-- Add more messages as needed -->
+    <div class="textbox">
+      <input type="text" placeholder="Real time text generate HERE.">
+      <button>Send</button>
+    </div>
+  </div>
+
+<div>
+</div>
+
+{% endblock %}

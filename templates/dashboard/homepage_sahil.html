@@ -1,0 +1,960 @@
+<!doctype html>
+                        <html>
+                            <head>
+                                <meta charset='utf-8'>
+                                <meta name='viewport' content='width=device-width, initial-scale=1'>
+                                <title>SCRUM MEETING</title>
+                                <link href='' rel='stylesheet'>
+                                <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
+                                <style>body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+header {
+    z-index: 1;
+    position: fixed;
+    background: #22242A;
+    padding: 20px;
+    width: calc(100% - 0%);
+    top: 0;
+    height: 30px;
+}
+
+.left_area h3 {
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.left_area span {
+    color: #19B3D3;
+}
+
+.logout_btn {
+    padding: 5px;
+    background: #19B3D3;
+    text-decoration: none;
+    float: right;
+    margin-top: -30px;
+    margin-right: 40px;
+    border-radius: 2px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    transition: 0.5s;
+    transition-property: background;
+}
+
+.logout_btn:hover {
+    background: #0B87A6;
+}
+
+.sidebar {
+    z-index: 1;
+    top: 0;
+    background: #2f323a;
+    margin-top: 70px;
+    padding-top: 30px;
+    position: fixed;
+    left: 0;
+    width: 250px;
+    height: calc(100% - 9%);
+    transition: 0.5s;
+    transition-property: left;
+    overflow-y: auto;
+}
+
+.profile_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar .profile_info .profile_image {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin-bottom: 10px;
+}
+
+.sidebar .profile_info h4 {
+    color: #ccc;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    color: #fff;
+    display: block;
+    width: 100%;
+    line-height: 60px;
+    text-decoration: none;
+    padding-left: 40px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    transition-property: background;
+}
+
+.sidebar a:hover {
+    background: #19B3D3;
+}
+
+.sidebar i {
+    padding-right: 10px;
+}
+
+label #sidebar_btn {
+    z-index: 1;
+    color: #fff;
+    position: fixed;
+    cursor: pointer;
+    left: 300px;
+    font-size: 20px;
+    margin: 5px 0;
+    transition: 0.5s;
+    transition-property: color;
+}
+
+label #sidebar_btn:hover {
+    color: #19B3D3;
+}
+
+#check:checked~.sidebar {
+    left: -185px;
+}
+
+#check:checked~.sidebar a span {
+    display: none;
+}
+
+#check:checked~.sidebar a {
+    font-size: 20px;
+    margin-left: 165px;
+    width: 100%;
+}
+
+.content {
+    width: (100% - 250px);
+    margin-top: 60px;
+    padding: 20px;
+    margin-left: 250px;
+    background: url(background.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    transition: 0.5s;
+}
+
+#check:checked~.content {
+    margin-left: 60px;
+}
+
+#check:checked~.sidebar .profile_info {
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+.mobile_nav {
+    display: none;
+}
+
+.content .card p {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Responsive CSS */
+
+@media screen and (max-width: 780px) {
+    .sidebar {
+        display: none;
+    }
+
+    #sidebar_btn {
+        display: none;
+    }
+
+    .content {
+        margin-left: 0;
+        margin-top: 0;
+        padding: 10px 20px;
+        transition: 0s;
+    }
+
+    #check:checked~.content {
+        margin-left: 0;
+    }
+
+    .mobile_nav {
+        display: block;
+        width: calc(100% - 0%);
+    }
+
+    .nav_bar {
+        background: #222;
+        width: (100% - 0px);
+        margin-top: 70px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+    .nav_bar .mobile_profile_image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .nav_bar .nav_btn {
+        color: #fff;
+        font-size: 22px;
+        cursor: pointer;
+        transition: 0.5s;
+        transition-property: color;
+    }
+
+    .nav_bar .nav_btn:hover {
+        color: #19B3D3;
+    }
+
+    .mobile_nav_items {
+        background: #2F323A;
+        display: none;
+    }
+
+    .mobile_nav_items a {
+        color: #fff;
+        display: block;
+        text-align: center;
+        letter-spacing: 1px;
+        line-height: 60px;
+        text-decoration: none;
+        box-sizing: border-box;
+        transition: 0.5s;
+        transition-property: background;
+    }
+
+    .mobile_nav_items a:hover {
+        background: #19B3D3;
+    }
+
+    .mobile_nav_items i {
+        padding-right: 10px;
+    }
+
+    .active {
+        display: block;
+    }
+}</style>
+                                <script type='text/javascript' src=''></script>
+                                <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+                                <script type='text/javascript' src=''></script>
+                            </head>
+                            <body oncontextmenu='return false' class='snippet-body'>
+                            <input type="checkbox" id="check">
+<!--header area start-->
+<header>
+    <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+    </label>
+    <div class="left_area">
+        <h3>Scrum<span> Meeting</span></h3>
+    </div>
+    <div class="right_area">
+        <a href="#" class="logout_btn">Logout</a>
+    </div>
+</header>
+<!--header area end-->
+<!--mobile navigation bar start-->
+<div class="mobile_nav">
+    <div class="nav_bar">
+        <img src="1.png" class="mobile_profile_image" alt="">
+        <i class="fa fa-bars nav_btn"></i>
+    </div>
+    <div class="mobile_nav_items">
+        <a href="#"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+        <a href="#"><i class="fas fa-cogs"></i><span>Components</span></a>
+        <a href="#"><i class="fas fa-table"></i><span>Tables</span></a>
+        <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
+        <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
+        <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+    </div>
+</div>
+<!--mobile navigation bar end-->
+<!--sidebar start-->
+<div class="sidebar">
+    <div class="profile_info">
+        <img src="test1.jpg" class="profile_image" alt="">
+<!--        <h4>Williamson</h4>-->
+    </div>
+    <a href="#"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+    <a href="#"><i class="fas fa-cogs"></i><span>Components</span></a>
+    <a href="#"><i class="fas fa-table"></i><span>Tables</span></a>
+    <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
+    <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
+    <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+</div>
+<!--sidebar end-->
+
+<head>
+    <title>Move HTML Element</title>
+    <style>
+        .card {
+            position: absolute;
+            top: 100px;
+            left: 300px;
+        }
+    </style>
+</head>
+
+                            <!--Meeting details card -->
+<head>
+  <title>Meeting Details</title>
+  <style>
+    /* CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .card {
+      background-color: #2f323a;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0.9, 0.4, 2, 0.1);
+      padding: 20px;
+    }
+
+    h4 {
+      margin-top: 0;
+      color: #f5f5f5;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: #f5f5f5;
+      font-size: 16px;
+    }
+  </style>
+
+    <!-- Meeting card -->
+</head>
+<body>
+  <div class="card">
+    <h4>Meeting Details</h4>
+    <p>Date: June 10, 2023</p>
+    <p>Time: 10:00 AM - 11:00 AM</p>
+    <p>Location: Meeting Room A</p>
+    <p>Agenda: Discuss project updates and next steps</p>
+  </div>
+</body>
+
+
+  <!--BUTTONS-->
+  <!--Buttons to handle real time text generated in the window  -->
+  <head>
+    <title>Move Buttons</title>
+    <style>
+      /* CSS styles */
+      .button-container {
+        position: absolute;
+        top: 400px;
+        left: 300px;
+        display: flex;
+       <!-- transform: translate(-50%, -50%);-->
+      }
+
+      .button-container button {
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 16px;
+        color: #fff;
+        background-color: purple;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+       <!-- align-items: center;-->
+       <!-- justify-content: center;-->
+      }
+  <!--    #stop-btn {-->
+  <!--      font-size: 50px;-->
+  <!--      color: #45a049;-->
+  <!--    }-->
+  <!--    #start-btn {-->
+  <!--      font-size: 45px;-->
+  <!--      color: #45a049;-->
+  <!--    }-->
+  <!--    #save-btn {-->
+  <!--      font-size: 45px;-->
+  <!--      color: #45a049;-->
+  <!--    }-->
+
+      #start-btn::before {
+        content: "▶";
+        margin-right: 5px;
+      }
+
+      #stop-btn::before {
+        content: "◼";
+        margin-right: 5px;
+      }
+
+      #save-btn::before {
+        content: "⤓";
+        margin-right: 5px;
+      }
+
+      .button-container button:hover {
+        background-color: #45a049;
+      }
+
+      .button-container button:focus {
+        outline: none;
+      }
+    </style>
+  </head>
+  <head>
+  <body>
+    <div class="button-container">
+      <button id="start-btn">Play</button>
+      <button id="stop-btn">Stop</button>
+      <button id="save-btn">Download</button>
+  <!--      <span id="start-btn">&#9654;</span>-->
+  <!--    <span id="stop-btn">&#9724;</span>-->
+  <!--    <span id="save-btn">&#10515;</span>-->
+    </div>
+  </body>
+
+
+  </head>
+  <head>
+</body>
+
+<!--Buttons to download files  -->
+<head>
+<body>
+  <style>
+  /* Repositioning and resizing buttons */
+  #button-container-2 {
+    position: absolute;
+    top: 90px;
+    left: 800px;
+    display: flex;
+    background-color: #4CAF50;
+    color: #fff;
+  }
+  #button-container-2 button {
+    padding: 10px 20px;
+        margin: 5px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+  }
+       #button-container-2 button:hover {
+        background-color: Purple;
+      }
+
+      .button-container-2 button:focus {
+        outline: none;
+      }
+</style>
+  <div id="button-container-2">
+    <button id="download-csv">Download CSV</button>
+<!--    <button id="download-json">Download JSON</button>-->
+    <button id="download-xlsx">Download XLSX</button>
+    <button id="download-pdf">Download PDF</button>
+<!--    <button id="download-html">Download HTML</button>-->
+  </div>
+                                                        <!-- XLSX Script Includes-->
+<script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
+
+                            <!-- PDF Script Includes-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.20/jspdf.plugin.autotable.min.js"></script>
+
+                            <!--JavaScript-->
+<link href="https://cdn.jsdelivr.net/npm/tabulator-tables@4.9.3/dist/css/tabulator.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>
+
+<script>
+  <body>
+    <table id="recordings-table" class = "draggable -table">
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Text</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="row1">
+                <td class="popup" onclick="showPopup('emp1')">Krishna
+                    <span class="popuptext" id="emp1">Employee Number: 001<br>Department: Sales<br>Position: Manager</span>
+                </td>
+                <td><input type="text"></td>
+            </tr>
+            <tr id="row2">
+                <td class="popup" onclick="showPopup('emp2')">Rishit
+                    <span class="popuptext" id="emp2">Employee Number: 002<br>Department: HR<br>Position: Assistant</span>
+                </td>
+                <td><input type="text"></td>
+            </tr>
+            <tr id="row3">
+                <td class="popup" onclick="showPopup('emp3')">Ritesh
+                    <span class="popuptext" id="emp3">Employee Number: 003<br>Department: Marketing<br>Position: Analyst</span>
+                </td>
+                <td><input type="text"></td>
+            </tr>
+            <tr id="row4">
+                <td class="popup" onclick="showPopup('emp4')">Sahil
+                    <span class="popuptext" id="emp4">Employee Number: 004<br>Department: IT<br>Position: Developer</span>
+                </td>
+                <td><input type="text"></td>
+            </tr>
+            <tr id="row5">
+                <td class="popup" onclick="showPopup('emp5')">Saramsa
+                    <span class="popuptext" id="emp5">Employee Number: 005<br>Department: Finance<br>Position: Accountant</span>
+                </td>
+                <td><input type="text"></td>
+            </tr>
+            <!-- Add more rows for other employees -->
+        </tbody>
+
+  // Trigger download of data.csv file
+  document.getElementById("download-csv").addEventListener("click", function () {
+    table.download("csv", "data.csv");
+  });
+
+  // Trigger download of data.json file
+  document.getElementById("download-json").addEventListener("click", function () {
+    table.download("json", "data.json");
+  });
+
+  // Trigger download of data.xlsx file
+  document.getElementById("download-xlsx").addEventListener("click", function () {
+    table.download("xlsx", "data.xlsx", { sheetName: "My Data" });
+  });
+
+  // Trigger download of data.pdf file
+  document.getElementById("download-pdf").addEventListener("click", function () {
+    table.download("pdf", "data.pdf", {
+      orientation: "portrait", // Set page orientation to portrait
+      title: "Example Report", // Add title to report
+    });
+  });
+
+  // Trigger download of data.html file
+  document.getElementById("download-html").addEventListener("click", function () {
+    table.download("html", "data.html", { style: true });
+  });
+</script>
+<div id="#recordings-table"></div>
+</body>
+
+</head>
+
+
+
+  <!--Speech Window where real time text will be generated-->
+  <title>Employee Speech Window</title>
+  <style>
+    /* CSS styles */
+    .speech-window {
+      position: absolute;
+      top: 450px;
+      left: 300px;
+      width: 400px;
+      height: 300px;
+      border: 1px solid #ccc;
+      overflow-y: scroll;
+      padding: 10px;
+      background-color: #2f323a;
+      border-radius: 8px;
+    }
+
+    h4 {
+      margin: 0 0 10px;
+      color: #f5f5f5;
+    }
+
+    .message {
+      margin-bottom: 10px;
+    }
+
+    .employee {
+      color: #333;
+      background-color: #eaf5ff;
+      padding: 5px;
+      border-radius: 4px;
+    }
+
+    .other-employee {
+      color: #666;
+      background-color: #f5f5f5;
+      padding: 5px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+<style>
+  .textbox {
+    display: flex;
+    align-items: flex-start;
+    position:relative;
+  }
+  .textbox input[type="text"] {
+    flex: 1;
+    word-wrap: break-word;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 295px;
+    height:200px;
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+
+
+  .textbox button {
+    padding: 8px 12px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .textbox button:hover {
+    background-color: #45a049;
+  }
+</style>
+  <div class="speech-window">
+    <h4>Speech-Window</h4>
+
+    <!-- Add more messages as needed -->
+    <div class="textbox">
+      <input type="text" placeholder="Real time text generate HERE.">
+      <button>Send</button>
+    </div>
+  </div>
+</body>
+
+
+
+    <!-- Table for Employees and their recordings-->
+
+<head>
+    <title>Employee Recordings</title>
+    <style>
+        #recordings-table {
+            position: absolute;
+            height: 800px;
+            top: 100px;
+            left: 600px;
+            width: 500px;
+            margin-left: 200px;
+            margin-top: 50px;
+            border-collapse: collapse;
+            background-color: #2f323a;
+            color: #f5f5f5;
+        }
+
+        #recordings-table th,
+        #recordings-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+
+        #recordings-table th {
+            background-color: #2f323a;
+        }
+
+        /* Define styling for the draggable text boxes */
+        .draggable {
+            padding: 5px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            cursor: move;
+        }
+
+        /* CSS styles */
+        input[type="text"] {
+            width: 250px; /* Adjust the width as needed */
+            height: 90px; /* Adjust the height as needed */
+            font-size: 14px; /* Adjust the font size as needed */
+            padding: 15px; /* Adjust the padding as needed */
+            /* Additional styles */
+            background-color: #f2f2f2;
+            color: #000000b;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+           /* Define styling for the popups */
+        .popup {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .popup .popuptext {
+            visibility: hidden;
+            width: 160px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -80px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .popup .popuptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        .popup:hover .popuptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <table id="recordings-table" class = "draggable -table">
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Text</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="row1">
+                <td class="popup" onclick="showPopup('emp1')">Krishna
+                    <span class="popuptext" id="emp1">Employee Number: 001<br>Department: Sales<br>Position: Manager</span>
+                </td>
+                <td><input type="text"></td>
+            </tr>
+            <tr id="row2">
+                <td class="popup" onclick="showPopup('emp2')">Rishit
+                    <span class="popuptext" id="emp2">Employee Number: 002<br>Department: HR<br>Position: Assistant</span>
+                </td>
+                <td><input type="text"></td>
+            </tr>
+            <tr id="row3">
+                <td class="popup" onclick="showPopup('emp3')">Ritesh
+                    <span class="popuptext" id="emp3">Employee Number: 003<br>Department: Marketing<br>Position: Analyst</span>
+                </td>
+                <td><input type="text"></td>
+            </tr>
+            <tr id="row4">
+                <td class="popup" onclick="showPopup('emp4')">Sahil
+                    <span class="popuptext" id="emp4">Employee Number: 004<br>Department: IT<br>Position: Developer</span>
+                </td>
+                <td><input type="text"></td>
+            </tr>
+            <tr id="row5">
+                <td class="popup" onclick="showPopup('emp5')">Saramsa
+                    <span class="popuptext" id="emp5">Employee Number: 005<br>Department: Finance<br>Position: Accountant</span>
+                </td>
+                <td><input type="text"></td>
+            </tr>
+            <!-- Add more rows for other employees -->
+        </tbody>
+    </table>
+    <script>
+(function() {
+  "use strict";
+
+  const table = document.getElementById('table');
+  const tbody = table.querySelector('tbody');
+
+  var currRow = null,
+      dragElem = null,
+      mouseDownX = 0,
+      mouseDownY = 0,
+      mouseX = 0,
+      mouseY = 0,
+      mouseDrag = false;
+
+  function init() {
+    bindMouse();
+  }
+
+  function bindMouse() {
+    document.addEventListener('mousedown', (event) => {
+      if(event.button != 0) return true;
+
+      let target = getTargetRow(event.target);
+      if(target) {
+        currRow = target;
+        addDraggableRow(target);
+        currRow.classList.add('is-dragging');
+
+
+        let coords = getMouseCoords(event);
+        mouseDownX = coords.x;
+        mouseDownY = coords.y;
+
+        mouseDrag = true;
+      }
+    });
+
+    document.addEventListener('mousemove', (event) => {
+      if(!mouseDrag) return;
+
+      let coords = getMouseCoords(event);
+      mouseX = coords.x - mouseDownX;
+      mouseY = coords.y - mouseDownY;
+
+      moveRow(mouseX, mouseY);
+    });
+
+    document.addEventListener('mouseup', (event) => {
+      if(!mouseDrag) return;
+
+      currRow.classList.remove('is-dragging');
+      table.removeChild(dragElem);
+
+      dragElem = null;
+      mouseDrag = false;
+    });
+  }
+
+
+  function swapRow(row, index) {
+     let currIndex = Array.from(tbody.children).indexOf(currRow),
+         row1 = currIndex > index ? currRow : row,
+         row2 = currIndex > index ? row : currRow;
+
+     tbody.insertBefore(row1, row2);
+  }
+
+  function moveRow(x, y) {
+    dragElem.style.transform = "translate3d(" + x + "px, " + y + "px, 0)";
+
+    let	dPos = dragElem.getBoundingClientRect(),
+        currStartY = dPos.y, currEndY = currStartY + dPos.height,
+        rows = getRows();
+
+    for(var i = 0; i < rows.length; i++) {
+      let rowElem = rows[i],
+          rowSize = rowElem.getBoundingClientRect(),
+          rowStartY = rowSize.y, rowEndY = rowStartY + rowSize.height;
+
+      if(currRow !== rowElem && isIntersecting(currStartY, currEndY, rowStartY, rowEndY)) {
+        if(Math.abs(currStartY - rowStartY) < rowSize.height / 2)
+          swapRow(rowElem, i);
+      }
+    }
+  }
+
+  function addDraggableRow(target) {
+      dragElem = target.cloneNode(true);
+      dragElem.classList.add('draggable-table__drag');
+      dragElem.style.height = getStyle(target, 'height');
+      dragElem.style.background = getStyle(target, 'backgroundColor');
+      for(var i = 0; i < target.children.length; i++) {
+        let oldTD = target.children[i],
+            newTD = dragElem.children[i];
+        newTD.style.width = getStyle(oldTD, 'width');
+        newTD.style.height = getStyle(oldTD, 'height');
+        newTD.style.padding = getStyle(oldTD, 'padding');
+        newTD.style.margin = getStyle(oldTD, 'margin');
+      }
+
+      table.appendChild(dragElem);
+
+
+      let tPos = target.getBoundingClientRect(),
+          dPos = dragElem.getBoundingClientRect();
+      dragElem.style.bottom = ((dPos.y - tPos.y) - tPos.height) + "px";
+      dragElem.style.left = "-1px";
+
+      document.dispatchEvent(new MouseEvent('mousemove',
+        { view: window, cancelable: true, bubbles: true }
+      ));
+  }
+
+
+
+
+
+
+
+  function getRows() {
+    return table.querySelectorAll('tbody tr');
+  }
+
+  function getTargetRow(target) {
+      let elemName = target.tagName.toLowerCase();
+
+      if(elemName == 'tr') return target;
+      if(elemName == 'td') return target.closest('tr');
+  }
+
+  function getMouseCoords(event) {
+    return {
+        x: event.clientX,
+        y: event.clientY
+    };
+  }
+
+  function getStyle(target, styleName) {
+    let compStyle = getComputedStyle(target),
+        style = compStyle[styleName];
+
+    return style ? style : null;
+  }
+
+  function isIntersecting(min0, max0, min1, max1) {
+      return Math.max(min0, max0) >= Math.min(min1, max1) &&
+             Math.min(min0, max0) <= Math.max(min1, max1);
+  }
+
+
+
+  init();
+
+})();
+    </script>
+<script>
+        // Function to show the popup
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.classList.toggle("show");
+        }
+</script>
+
+</body>
+</html>

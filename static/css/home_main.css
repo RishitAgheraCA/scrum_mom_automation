@@ -1,0 +1,239 @@
+.card_2 {
+      background-color: #2f323a;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0.9, 0.4, 2, 0.1);
+      padding: 20px;
+    }
+
+.card_2 h4 {
+  margin-top: 0;
+  color: #f5f5f5;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card_2 p {
+  margin-bottom: 10px;
+  color: white;
+  font-size: 16px;
+}
+.button-container {
+        position: absolute;
+        top: 400px;
+        left: 300px;
+        display: flex;
+       <!-- transform: translate(-50%, -50%);-->
+      }
+
+.button-container button {
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 16px;
+        color: #fff;
+        background-color: purple;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+ }
+
+ #start-btn::before {
+        content: "▶";
+        margin-right: 5px;
+      }
+
+      #stop-btn::before {
+        content: "◼";
+        margin-right: 5px;
+      }
+
+      #save-btn::before {
+        content: "⤓";
+        margin-right: 5px;
+      }
+
+      .button-container button:hover {
+        background-color: #45a049;
+      }
+
+      .button-container button:focus {
+        outline: none;
+      }
+
+ .speech-window {
+      position: absolute;
+      top: 450px;
+      left: 300px;
+      width: 400px;
+      height: 300px;
+      border: 1px solid #ccc;
+      overflow-y: scroll;
+      padding: 10px;
+      background-color: #2f323a;
+      border-radius: 8px;
+    }
+
+  .speech-window  h4 {
+      margin: 0 0 10px;
+      color: #f5f5f5;
+    }
+
+    .message {
+      margin-bottom: 10px;
+    }
+
+    .employee {
+      color: #333;
+      background-color: #eaf5ff;
+      padding: 5px;
+      border-radius: 4px;
+    }
+
+    .other-employee {
+      color: #666;
+      background-color: #f5f5f5;
+      padding: 5px;
+      border-radius: 4px;
+    }
+
+   .textbox {
+    display: flex;
+    align-items: flex-start;
+    position:relative;
+  }
+  .textbox input[type="text"] {
+    flex: 1;
+    word-wrap: break-word;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 295px;
+    height:200px;
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+
+
+  .textbox button {
+    padding: 8px 12px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .textbox button:hover {
+    background-color: #45a049;
+  }
+
+  #button-container-2 {
+    position: absolute;
+    top: 90px;
+    left: 800px;
+    display: flex;
+    background-color: #4CAF50;
+    color: #fff;
+  }
+  #button-container-2 button {
+    padding: 10px 20px;
+        margin: 5px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+  }
+       #button-container-2 button:hover {
+        background-color: Purple;
+      }
+
+      .button-container-2 button:focus {
+        outline: none;
+      }
+   #recordings-table {
+            position: absolute;
+            height: 800px;
+            top: 100px;
+            left: 600px;
+            width: 500px;
+            margin-left: 200px;
+            margin-top: 50px;
+            border-collapse: collapse;
+            background-color: #2f323a;
+            color: #f5f5f5;
+        }
+
+        #recordings-table th,
+        #recordings-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+
+        #recordings-table th {
+            background-color: #2f323a;
+        }
+
+        /* Define styling for the draggable text boxes */
+        .draggable {
+            padding: 5px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            cursor: move;
+        }
+
+        /* CSS styles */
+        input[type="text"] {
+            width: 250px; /* Adjust the width as needed */
+            height: 90px; /* Adjust the height as needed */
+            font-size: 14px; /* Adjust the font size as needed */
+            padding: 15px; /* Adjust the padding as needed */
+            /* Additional styles */
+            background-color: #f2f2f2;
+            color: #000000b;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+           /* Define styling for the popups */
+        .popup {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .popup .popuptext {
+            visibility: hidden;
+            width: 160px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -80px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .popup .popuptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        .popup:hover .popuptext {
+            visibility: visible;
+            opacity: 1;
+        }
