@@ -61,15 +61,15 @@ function send_task_load(data){
 }
 
 
-$("#task_user_email").submit(function(e){
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.target).entries());
-
-    alertify.confirm("Would you like to send the mail to the users ?",
-      function(){
-        send_task_load(data);
-      },
-      function(){
-        alertify.error('Process Canceled');
-      });
-});
+//$("#task_user_email").submit(function(e){
+////    e.preventDefault();
+//    const data = Object.fromEntries(new FormData(e.target).entries());
+//
+//    alertify.confirm("Would you like to send the mail to the users ?",
+//      function(){
+//        //send_task_load(data);
+//      },
+//      function(){
+//        alertify.error('Process Canceled');
+//      });
+//});

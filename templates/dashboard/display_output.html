@@ -4,6 +4,8 @@
 <div class="row">
 <div class="col-md-9">
     <div>
+    <form method="POST" id="task_user_email" action="{% url 'saveoutput-view' %}">
+        {% csrf_token %}
     <table id="recordings-table" class="table table-striped table-dark">
         <thead>
             <tr>
@@ -14,24 +16,23 @@
             </tr>
         </thead>
         <tbody>
-        <form method="POST" id="task_user_email">
-            {% csrf_token %}
             {% for value in data %}
               {% with forloop.counter as outer_counter %}
                  <tr id="row1">
                      <td>{{value.name}}</td>
-                     <td><textarea name="task_{{outer_counter}}" id="" cols="30" rows="5">{{ value.task }}</textarea></td>
+                     <td><textarea name="task_{{outer_counter}}" cols="30" rows="5">{{ value.task }}</textarea></td>
                      <input type="hidden" name="name_{{outer_counter}}" value="{{ value.name }}">
-                     <td><textarea name="task_{{outer_counter}}" id="" cols="30" rows="5">{{ value.task }}</textarea></td>
-                     <td><textarea name="task_{{outer_counter}}" id="" cols="30" rows="5">{{ value.task }}</textarea></td>
+                     <td><textarea name="task_{{outer_counter}}" cols="30" rows="5">{{ value.task }}</textarea></td>
+                     <td><textarea name="task_{{outer_counter}}" cols="30" rows="5">{{ value.task }}</textarea></td>
                  </tr>
              {% endwith %}
             {% endfor %}
-            <label><button type="submit" class="btn btn-success">Send</button></label>
-        </form>
+            <input type="submit" value="Send Mail" class="btn btn-success">
+
             <!-- Add more rows for other employees -->
         </tbody>
     </table>
+    </form>
 </div>
 </div>
     <div class="col-md-3">
