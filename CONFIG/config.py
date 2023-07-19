@@ -22,3 +22,13 @@ PROMPT_OUTPUT_FORMAT = """
     "quantity": 
 }
 """
+
+
+MODEL_OUTPUT = {
+    "person1":{"task_completed:":"",
+               "blockers":"",
+               "deliverables":""},
+    "person2": {"task_completed:": "",
+                "blockers": "",
+                "deliverables": ""},
+}

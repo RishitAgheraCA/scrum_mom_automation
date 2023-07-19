@@ -1,5 +1,6 @@
 {% extends "dashboard/home_page.html" %}
 {% block content %}
+<div class="content">
 <div class="row">
 <div class="col-md-3">
     <form method="POST" id="post-form">
@@ -27,4 +28,8 @@
     <h4 class="display-4">Time</h4>
     <div id="example-table-4"></div>
 </div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="{% static  'js/tabulator.js' %}"></script>
 {% endblock %}
