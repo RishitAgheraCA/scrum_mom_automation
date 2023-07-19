@@ -140,8 +140,9 @@ function createDownloadLink(blob) {
             success: function(getData)
             {
                 console.log(getData);
-                let element = document.getElementById('recordingsList');
-                element.insertAdjacentText('afterend', getData.text);
+                $('#replace').html(getData)
+//                let element = document.getElementById('recordingsList');
+//                element.insertAdjacentText('afterend', getData.text);
             }
         });
     })
