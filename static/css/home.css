@@ -8,10 +8,9 @@ header {
     z-index: 1;
     position: fixed;
     background: #22242A;
-    padding: 20px;
+    padding: 22.9px;
     width: calc(100% - 0%);
     top: 0;
-    height: 30px;
 }
 
 .left_area h3 {
@@ -105,7 +104,7 @@ label #sidebar_btn {
     color: #fff;
     position: fixed;
     cursor: pointer;
-    left: 300px;
+    left: 230px;
     font-size: 20px;
     margin: 5px 0;
     transition: 0.5s;

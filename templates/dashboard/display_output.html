@@ -6,7 +6,7 @@
     <div>
     <form method="POST" id="task_user_email" action="{% url 'saveoutput-view' %}">
         {% csrf_token %}
-    <table id="recordings-table" class="table table-striped table-dark">
+    <table id="recordings-table" class="table table-striped table-dark" style="margin-top:1rem;">
         <thead>
             <tr>
                 <th>Employee Name</th>
@@ -35,7 +35,7 @@
     </form>
 </div>
 </div>
-    <div class="col-md-3">
+    <div class="col-md-3" style="padding-left:50px;">
     <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
       <div class="card-header"><h4>Meeting Details</h4></div>
       <div class="card-body">

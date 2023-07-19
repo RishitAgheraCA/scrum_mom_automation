@@ -1,14 +1,16 @@
 {% extends "dashboard/home_page.html" %}
 {% load static %}
 {% block content %}
+
 <div class="content" id="replace">
 <div id="controls">
-    <button id="recordButton">Record</button>
-    <button id="pauseButton" disabled>Pause</button>
-    <button id="stopButton" disabled>Stop</button>
+    <h3>Record New Standup Meeting</h3>
+    <button class="btn btn-success" id="recordButton">Record</button>
+    <button class="btn btn-success" id="pauseButton" disabled>Pause</button>
+    <button class="btn btn-success" id="stopButton" disabled>Stop</button>
     <input type="text" id="csrf" hidden value="{{csrf_token}}">
 </div>
-<h3>Recordings</h3>
+
 <ol id="recordingsList"></ol>
 
 </div>

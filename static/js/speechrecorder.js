@@ -92,6 +92,7 @@ function stopRecording() {
 function createDownloadLink(blob) {
     var url = URL.createObjectURL(blob);
     var au = document.createElement('audio');
+    var br = document.createElement('br')
     var li = document.createElement('li');
     var link = document.createElement('a');
     //add controls to the <audio> element
@@ -102,8 +103,11 @@ function createDownloadLink(blob) {
     link.download = new Date().toISOString() + '.wav';
     link.innerHTML = link.download;
     //add the new audio and a elements to the li element
+    li.appendChild(br);
     li.appendChild(au);
+    li.appendChild(br);
     li.appendChild(link);
+    li.appendChild(br);
     //add the li element to the ordered list
     recordingsList.appendChild(li);
 
@@ -112,8 +116,10 @@ function createDownloadLink(blob) {
     var filename = `${getDateTime()}.wav`;
     //filename to send to server without extension
     //upload link
-    var upload = document.createElement('a');
+    var upload = document.createElement('button');
     upload.href = "#";
+    upload.classList.add('btn');
+    upload.classList.add('btn-success');
     upload.innerHTML = "Submit";
     upload.addEventListener("click", function(event) {
 //        var xhr = new XMLHttpRequest();
