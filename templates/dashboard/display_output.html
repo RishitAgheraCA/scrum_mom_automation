@@ -1,4 +1,5 @@
 {% extends "dashboard/home_page.html" %}
+{% load static %}
 {% block content %}
 <div class="content">
 <div class="row">
@@ -48,4 +49,5 @@
       </div>
 </div>
 </div>
+<script src="{% static 'js/tabulator.js' %}"></script>
 {% endblock %}
