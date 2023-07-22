@@ -32,19 +32,19 @@ class HomePageView(View):
 class TableView(View):
     def get(self, request):
         details = [
-            {"name": "Sahil", "email": "sahil@fakemail.com", "task": "Write email series", "Emp_num": '001',
-             'Postion': 'Web Developer', 'Department': 'Web Development'},
-            {"name": "Krishna", "email": "krishna@fakemail.com", "task": "Build Free trial Form", "Emp_num": '021',
-             'Postion': 'Data Analyst', 'Department': 'Data Science'},
-            {"name": "Ritesh", "email": "ritesh@fakemail.com", "task": "Write monthly Newsletter", "Emp_num": '031',
-             'Postion': 'Project Manager', 'Department': 'Overall head'},
-            {"name": "Rishit", "email": "rishit@fakemail.com", "task": "Work on Home page", "Emp_num": '031',
-             'Postion': 'NLP Developer', 'Department': 'AI and Data Science'},
-            {"name": "Saramsa", "email": "sam@fakemail.com", "task": "make the layout responsive", "Emp_num": '002',
-             'Postion': 'Back end Web Developer', 'Department': 'Web Development'},
+            {"name": "Sahil", "email": "sahil@yopmail.com", "task": "Write email series",
+             "blockers": 'Ran into email series prob', "deliverables": "Automated email series"},
+            {"name": "Krishna", "email": "Krishna@yopmail.com", "task": "Build Free trial Form",
+             "blockers": 'Error in nav bars', "deliverables": "Multi dynamic trail forms"},
+            {"name": "Ritesh", "email": "Ritesh@yopmail.com", "task": "Write monthly Newsletter",
+             "blockers": 'Content was vauge at some times', "deliverables": "Monthly news letter"},
+            {"name": "Rishit", "email": "Rishit@yopmail.com", "task": "Work on Home page",
+             "blockers": "To navigate the items", "deliverables": "Responsive home page"},
+            {"name": "Saramsa", "email": "Saramsa@yopmail.com", "task": "make the layout responsive",
+             "blockers": "To use and integrate bootstrap", "deliverables": "Mobile friendly view"},
         ]
 
-        return render(request, 'dashboard/display_output.html', {'data': details})
+        return render(request, 'dashboard/display_output_2.html', {'data': details})
 
     def post(self, request):
         print('table-view:', request.POST)
