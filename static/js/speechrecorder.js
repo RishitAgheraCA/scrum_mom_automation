@@ -18,6 +18,15 @@ stopButton.addEventListener("click", stopRecording);
 pauseButton.addEventListener("click", pauseRecording);
 
 function startRecording() {
+  var imageContainer = document.getElementById("imageContainer");
+  var image = document.createElement("img");
+
+  const imageUrl = document.getElementById('myImage').src;
+
+  image.src = imageUrl;
+  imageContainer.appendChild(image);
+
+
 audioContext.resume()
 /* Simple constraints object, for more advanced audio features see
 context.resume()
@@ -75,6 +84,10 @@ function pauseRecording() {
 
 function stopRecording() {
     console.log("stopButton clicked");
+
+    var container = document.getElementById("imageContainer");
+    container.innerHTML = "";
+
     //disable the stop button, enable the record too allow for new recordings
     stopButton.disabled = true;
     recordButton.disabled = false;
@@ -111,6 +124,29 @@ function createDownloadLink(blob) {
     //add the li element to the ordered list
     recordingsList.appendChild(li);
 
+    //for label
+    var label = document.createElement('label');
+    label.setAttribute('for', 'num_users');
+    label.innerHTML = 'Number of Participants';
+
+    li.appendChild(label)
+
+    //For select tag
+    var select = document.createElement('select');
+
+    select.setAttribute('name', 'num_users');
+
+    select.setAttribute('id','participants')
+
+    for (var i = 1; i <= 10; i++) {
+      var option = document.createElement('option');
+      option.value = i;
+      option.text = i;
+      select.appendChild(option);
+    }
+
+    li.appendChild(select)
+
     //upload file code
 
     var filename = `${getDateTime()}.wav`;
@@ -136,6 +172,7 @@ function createDownloadLink(blob) {
         form.append("audio_data", blob, filename);
         form.append("csrfmiddlewaretoken",$("#csrf").val())
         form.append("filename",filename)
+        form.append("num_users",$('#participants').val())
         $.ajax(
         {
             url: '../transcribe/speechtotext/',

@@ -2,7 +2,8 @@ from email.mime.image import MIMEImage
 from pathlib import Path
 
 from django.contrib.sites.models import Site
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 from django.utils.html import strip_tags
 from django.views import View
 from django.http import HttpResponse
@@ -10,6 +11,7 @@ from django.http import JsonResponse
 from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
 from django.conf import settings
 from django.template.loader import render_to_string
+from json import dumps
 
 import os
 
@@ -44,7 +46,7 @@ class TableView(View):
              "blockers": "To use and integrate bootstrap", "deliverables": "Mobile friendly view"},
         ]
 
-        return render(request, 'dashboard/display_output_2.html', {'data': details})
+        return render(request, 'dashboard/display_output.html', {'data': details})
 
     def post(self, request):
         print('table-view:', request.POST)
@@ -129,32 +131,101 @@ class SaveOutputView(View):
         pass
 
     def post(self, request):
-        print('save output:', request.POST)
+        # form_data=request.POST['Sahil_task']
         #save code
         #send mail
-        return render('dashbord/home_page.html')
+        # return render('dashbord/home_page.html')
 
-def send_mail(request,data):
-    if request.method == "POST":
-        form_data = request.POST
+        data = request.POST
 
-        recipient_email = ['test-f6f4dd@test.mailgenius.com']
-        subject = 'Upcoming Tasks for Today'
-        from_email = 'ssaramsa@gmail.com'
+        check_data=list(data)
 
-        img_path = request.scheme + '://' + request.get_host() + '/static/logo.jpeg'
+        new_data=[]
 
-        context = {'username': 'John', 'company': "Road Runner", 'img_path': img_path,
-                   'task': 'Work on email template, review mail testing sites for testing.'}
-        email_html = render_to_string('dashboard/email_temp.html', context)
+        for i in range(1,len(check_data)):
+            # print(new_data.append(check_data[i]))
+            personal_dict={}
+            key_to_check = check_data[i].split('_')[1]
+            if any(key_to_check in d for d in new_data):
+                for d in new_data:
+                    if key_to_check in d:
+                        d.setdefault(check_data[i].split('_')[0],request.POST[check_data[i]])
+            else:
+                personal_dict[check_data[i].split('_')[1]] = 'user'
 
-        # try:
-        subject = 'Welcome to my site'
-        email = EmailMultiAlternatives(subject, '', from_email, recipient_email)
-        email.attach_alternative(email_html, 'text/html')
+                personal_dict[check_data[i].split('_')[0]]=request.POST[check_data[i]]
+                new_data.append(personal_dict)
 
-        email.send()
-        return None
+        condition_check = 'user'
+
+        # for i in range(len(new_data)):
+        #     interchanged_dict = {key:(value if value != condition_check else key) for key, value in new_data[i].items()}
+        #     new_data[i]=interchanged_dict
+
+        for data in new_data[:1]:
+            send_mail(data)
+
+        # return JsonResponse({'new_data':new_data})
+        messages.success(request, 'Form submitted successfully!')
+
+        # return HttpResponse(request.POST)
+        return redirect('home')
+
+def send_mail(user_details):
+    recipient_email = user_details['email']
+    subject = 'Upcoming Tasks for Today'
+    from_email = 'ssaramsa@gmail.com'
+
+    # img_path = request.scheme + '://' + request.get_host() + '/static/logo.jpeg'
+
+    img_path = 'http://127.0.0.1:8000/static/logo.jpeg'
+
+    val_to_check = 'user'
+
+    check = [key for key,val in user_details.items() if val==val_to_check]
+
+    usr_str = ''.join(check)
+
+
+    context = {'username':usr_str, 'company': "Road Runner", 'img_path': img_path,'task':user_details['task'],'blockers':user_details['blockers'],'deliverables':user_details['deliverables']}
+    email_html = render_to_string('dashboard/email_temp.html', context)
+
+    # try:
+    subject = 'Welcome to my site'
+    email = EmailMultiAlternatives(subject, '', from_email, [recipient_email])
+    email.attach_alternative(email_html, 'text/html')
+
+    email.send()
+    return None
         # except Exception as e:
         #     return JsonResponse({"details":"No data found","msg":"Something went wrong please try again !"})
 
+class UserProfileView(View):
+    def get(self, request):
+        details = [
+            {"name": "Sahil", "email": "sahil@yopmail.com","role":"Front End Web Developer","profile_img":"sahil.jpg"},
+            {"name": "Krishna", "email": "Krishna@yopmail.com","role":"Data Scientist","profile_img":"krishna.jpg"},
+            {"name": "Ritesh", "email": "Ritesh@yopmail.com","role":"NLP Engineer","profile_img":"ritesh.jpg"},
+            {"name": "Rishit", "email": "Rishit@yopmail.com","role":"Team Lead","profile_img":"rishit.jpg"},
+            {"name": "Saramsa", "email": "Saramsa@yopmail.com","role":"Full Stack Developer","profile_img":"saramsa.jpg"},
+        ]
+
+        return render(request, 'dashboard/user_profile.html', {'data': details})
+
+class CalendarView(View):
+    def get(self,request):
+        details = [
+            {"name": "Sahil", "email": "sahil@yopmail.com", "task": "Write email series",
+             "blockers": 'Ran into email series prob', "deliverables": "Automated email series","deadline":"2023-07-31"},
+            {"name": "Krishna", "email": "Krishna@yopmail.com", "task": "Build Free trial Form",
+             "blockers": 'Error in nav bars', "deliverables": "Multi dynamic trail forms","deadline":"2023-08-01"},
+            {"name": "Ritesh", "email": "Ritesh@yopmail.com", "task": "Write monthly Newsletter",
+             "blockers": 'Content was vauge at some times', "deliverables": "Monthly news letter","deadline":"2023-08-02"},
+            {"name": "Rishit", "email": "Rishit@yopmail.com", "task": "Work on Home page",
+             "blockers": "To navigate the items", "deliverables": "Responsive home page","deadline":"2023-08-02"},
+            {"name": "Saramsa", "email": "Saramsa@yopmail.com", "task": "make the layout responsive",
+             "blockers": "To use and integrate bootstrap", "deliverables": "Mobile friendly view","deadline":"2023-08-07"},
+        ]
+
+        dataJSON = dumps(details)
+        return render(request, 'dashboard/calendar_task.html', {'data': details})

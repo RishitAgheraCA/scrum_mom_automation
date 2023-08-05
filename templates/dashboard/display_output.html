@@ -5,7 +5,7 @@
 <div class="row">
 <div class="col-md-9">
     <div>
-    <form method="POST" id="task_user_email" action="{% url 'saveoutput-view' %}">
+    <form method="POST" id="task_user_email_2" action="{% url 'saveoutput-view' %}">
         {% csrf_token %}
     <table id="recordings-table" class="table table-striped table-dark" style="margin-top:1rem;">
         <thead>
@@ -21,10 +21,11 @@
               {% with forloop.counter as outer_counter %}
                  <tr id="row1">
                      <td>{{value.name}}</td>
-                     <td><textarea name="task_{{outer_counter}}" cols="30" rows="5">{{ value.task }}</textarea></td>
-                     <input type="hidden" name="name_{{outer_counter}}" value="{{ value.name }}">
-                     <td><textarea name="task_{{outer_counter}}" cols="30" rows="5">{{ value.task }}</textarea></td>
-                     <td><textarea name="task_{{outer_counter}}" cols="30" rows="5">{{ value.task }}</textarea></td>
+                     <td><textarea name="task_{{value.name}}" cols="30" rows="5">{{ value.task }}</textarea></td>
+<!--                     <input type="hidden" name="name_{{outer_counter}}" value="{{ value.name }}">-->
+                     <input type="hidden" name="email_{{value.name}}" value="{{value.email}}">
+                     <td><textarea name="blockers_{{value.name}}" cols="30" rows="5">{{ value.blockers }}</textarea></td>
+                     <td><textarea name="deliverables_{{value.name}}" cols="30" rows="5">{{ value.deliverables }}</textarea></td>
                  </tr>
              {% endwith %}
             {% endfor %}

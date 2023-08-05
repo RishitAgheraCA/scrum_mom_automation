@@ -1,6 +1,6 @@
 import json
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
@@ -22,6 +22,10 @@ class SpeechToTextView(View):
         file = request.FILES['audio_data']
         filename = request.POST.get('filename')
         print('filename', filename)
+
+        #Number of participants on the scrum meeting
+        num_users = request.POST.get('num_users')
+
         path = default_storage.save(f'speechtotext/services/recordings/{filename}', ContentFile(file.read()))
 
         """ short(2-3) sentences transcriber"""
@@ -44,6 +48,9 @@ class SpeechToTextView(View):
         #     print('final text output:', text_output)
         #     dict.update({'text':text_output})
         print(dict)
+
+        return JsonResponse({'dict':dict})
+
         """
         
         api call for speech recognition will come here

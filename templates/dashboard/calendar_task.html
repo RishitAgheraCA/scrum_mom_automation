@@ -1,0 +1,16 @@
+{% extends "dashboard/home_page.html" %}
+{% load static %}
+{% block content %}
+<div class="content">
+  <div class="row">
+        <h1 class="text-muted m-t-15" style="padding-left:25%">Task Schedule and Updates</h1>
+        <div class="col-md-4 offset-6">
+            <button type="button" class="btn btn-success" id="prevButton">Prev</button>
+            <button type="button" class="btn btn-success" id="nextButton">Next</button>
+        </div>
+        <div id="calendar" style="height: 600px;padding-left:10%"></div>
+        <div id="myDiv" data-my-variable="{{ data }}"></div>
+  </div>
+</div>
+<script src="{% static 'js/toast_ui_calendar.js' %}"></script>
+{% endblock %}
