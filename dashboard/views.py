@@ -10,7 +10,7 @@ from django.http import JsonResponse
 from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
 from django.conf import settings
 from django.template.loader import render_to_string
-
+from speechtotext.task_identifier import identifyTasks
 import os
 
 
@@ -31,6 +31,7 @@ class HomePageView(View):
 
 class TableView(View):
     def get(self, request):
+        print('requesttttttttttttttttttttttt',request.POST)
         details = [
             {"name": "Sahil", "email": "sahil@yopmail.com", "task": "Write email series",
              "blockers": 'Ran into email series prob', "deliverables": "Automated email series"},
@@ -48,11 +49,48 @@ class TableView(View):
 
     def post(self, request):
         print('table-view:', request.POST)
-
-        """
+        """< QueryDict: {'csrfmiddlewaretoken': ['7WpzZTVu2w7LXtXE8o7yYBwzcdVeUlCk3gD9RYJe9fC63Q2gO1tEFcQspZKY4lU7'],
+                      'task_1': ['I have done Login page development. And I will deliver
+                                 the signup module this Friday.I have no blocker.'],
+                      'name_1': ['John'],
+                       'task_2': ['I
+                                 have Model training done.And I will deliver the Model Evaluation.I am facing
+                                 difficulties in C
+                                 hart creation.'],
+                       'name_2': ['Peter'],
+                       'task_3': ['I have done speaker diarization.And
+                                 I will deliver the Task identification module in two days.I am facing
+                                 challenges in deployment.'],
+                       'name_3': ['Sara']}>
+                                                                              
             api for task identification comes here
             
             """
+        names_and_contexts = {
+            "Krishna": "Hello, my name is Krishna. I completed the presentation. I am working on a report which is expected to be completed in 3 days. I have experienced some challenges in citation in report",
+            "Alex": "Hi, I'm Alex. I have finished the coding part of the project. Now, I'm onto the documentation which will take 2 more days. No significant challenges yet.",
+            # ... add more name-context pairs as needed
+        }
+
+        results = identifyTasks(names_and_contexts)
+        print('results::::::::::::::',results)
+        data=dict(request.POST)
+        no_person = len([i for i in dict(request.POST).keys() if 'name' in i])
+        persons = [i for i in dict(request.POST).keys() if 'name' in i]
+        persons = [data[person][0] for person in persons]
+        tasks = [i for i in dict(request.POST).keys() if 'task' in i]
+        tasks = [data[task][0] for task in tasks]
+        details = []
+        print(persons, tasks)
+
+        for counter in range(0,no_person):
+            details.append({'name':persons[counter],"email": "sahil@fakemail.com","task":tasks[counter], "Emp_num": '001',
+             'Postion': 'Web Developer', 'Department': 'Web Development'})
+
+        # import code
+        # code.interact(local=dict(globals(), **locals()))
+        results = identifyTasks(names_and_contexts)
+        print('results::::::::::::::', results)
 
         details = [
             {"name": "Sahil", "email": "sahil@fakemail.com", "task": "Write email series", "Emp_num": '001',
