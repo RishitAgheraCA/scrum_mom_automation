@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', function () {
         var task_dict = {
           id: new String(i),
           calendarId:new String(i),
-          title:org_list[i].task,
-          body:'<h6>Name : '+org_list[i].name+'</h6><h6>Blockers : '+org_list[i].blockers+'</h6><h6>Deliverables : '+org_list[i].deliverables+'</h6>',
-          start: new Date(org_list[i].deadline),
+          title:org_list[i].ongoing_task,
+          body:'<h6>Name : '+org_list[i].name+'</h6><h6>Blockers : '+org_list[i].blockers+'</h6><h6>Deliverables : '+org_list[i].completed_task+'</h6>',
+          start: new Date(org_list[i].days_req),
           category:'time',
           isReadOnly:true,
         };

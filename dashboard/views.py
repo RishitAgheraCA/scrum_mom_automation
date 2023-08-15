@@ -12,6 +12,8 @@ from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
 from django.conf import settings
 from django.template.loader import render_to_string
 from json import dumps
+from datetime import datetime, timedelta
+
 
 import os
 
@@ -227,5 +229,41 @@ class CalendarView(View):
              "blockers": "To use and integrate bootstrap", "deliverables": "Mobile friendly view","deadline":"2023-08-07"},
         ]
 
-        dataJSON = dumps(details)
-        return render(request, 'dashboard/calendar_task.html', {'data': details})
+        result = {'Krishna': 'Presentation,Report,3,Citation','Alex': 'Coding part of the project,Documentation,2,No significant challenges yet.'}
+
+        check = []
+
+        for k,v in result.items():
+            temp_dict = {}
+            temp_result = v.split(',')
+            temp_dict['name']=k
+            temp_dict['completed_task'] = temp_result[0]
+            temp_dict['ongoing_task'] =temp_result[1]
+            offset = int(temp_result[2])
+
+            days_req = self.get_date_offset(offset)
+
+            temp_dict['days_req']= days_req
+            temp_dict['blockers'] = temp_result[3]
+
+
+            check.append(temp_dict)
+
+        dataJSON = dumps(check)
+        # return HttpResponse(dataJSON)
+        return render(request, 'dashboard/calendar_task.html', {'data': check})
+
+    def get_date_offset(self,offset):
+        try:
+            # Get today's date
+            today = datetime.now().date()
+
+            # Calculate the new date by adding the offset
+            new_date = today + timedelta(days=offset)
+
+            # Format the new date as a string
+            new_date_str = new_date.strftime("%Y-%m-%d")
+
+            return new_date_str
+        except Exception as e:
+            return str(e)
