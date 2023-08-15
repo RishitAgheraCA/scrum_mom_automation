@@ -15,6 +15,7 @@ from json import dumps
 from datetime import datetime, timedelta
 
 
+from speechtotext.task_identifier import identifyTasks
 import os
 
 
@@ -48,7 +49,7 @@ class TableView(View):
              "blockers": "To use and integrate bootstrap", "deliverables": "Mobile friendly view"},
         ]
 
-        return render(request, 'dashboard/display_output.html', {'data': details})
+        return render(request, 'dashboard/display_output_2.html', {'data': details})
 
     def post(self, request):
         print('table-view:', request.POST)
@@ -133,72 +134,32 @@ class SaveOutputView(View):
         pass
 
     def post(self, request):
-        # form_data=request.POST['Sahil_task']
+        print('save output:', request.POST)
         #save code
         #send mail
-        # return render('dashbord/home_page.html')
+        return render('dashbord/home_page.html')
 
-        data = request.POST
+def send_mail(request,data):
+    if request.method == "POST":
+        form_data = request.POST
 
-        check_data=list(data)
+        recipient_email = ['test-f6f4dd@test.mailgenius.com']
+        subject = 'Upcoming Tasks for Today'
+        from_email = 'ssaramsa@gmail.com'
 
-        new_data=[]
+        img_path = request.scheme + '://' + request.get_host() + '/static/logo.jpeg'
 
-        for i in range(1,len(check_data)):
-            # print(new_data.append(check_data[i]))
-            personal_dict={}
-            key_to_check = check_data[i].split('_')[1]
-            if any(key_to_check in d for d in new_data):
-                for d in new_data:
-                    if key_to_check in d:
-                        d.setdefault(check_data[i].split('_')[0],request.POST[check_data[i]])
-            else:
-                personal_dict[check_data[i].split('_')[1]] = 'user'
+        context = {'username': 'John', 'company': "Road Runner", 'img_path': img_path,
+                   'task': 'Work on email template, review mail testing sites for testing.'}
+        email_html = render_to_string('dashboard/email_temp.html', context)
 
-                personal_dict[check_data[i].split('_')[0]]=request.POST[check_data[i]]
-                new_data.append(personal_dict)
+        # try:
+        subject = 'Welcome to my site'
+        email = EmailMultiAlternatives(subject, '', from_email, recipient_email)
+        email.attach_alternative(email_html, 'text/html')
 
-        condition_check = 'user'
-
-        # for i in range(len(new_data)):
-        #     interchanged_dict = {key:(value if value != condition_check else key) for key, value in new_data[i].items()}
-        #     new_data[i]=interchanged_dict
-
-        for data in new_data[:1]:
-            send_mail(data)
-
-        # return JsonResponse({'new_data':new_data})
-        messages.success(request, 'Form submitted successfully!')
-
-        # return HttpResponse(request.POST)
-        return redirect('home')
-
-def send_mail(user_details):
-    recipient_email = user_details['email']
-    subject = 'Upcoming Tasks for Today'
-    from_email = 'ssaramsa@gmail.com'
-
-    # img_path = request.scheme + '://' + request.get_host() + '/static/logo.jpeg'
-
-    img_path = 'http://127.0.0.1:8000/static/logo.jpeg'
-
-    val_to_check = 'user'
-
-    check = [key for key,val in user_details.items() if val==val_to_check]
-
-    usr_str = ''.join(check)
-
-
-    context = {'username':usr_str, 'company': "Road Runner", 'img_path': img_path,'task':user_details['task'],'blockers':user_details['blockers'],'deliverables':user_details['deliverables']}
-    email_html = render_to_string('dashboard/email_temp.html', context)
-
-    # try:
-    subject = 'Welcome to my site'
-    email = EmailMultiAlternatives(subject, '', from_email, [recipient_email])
-    email.attach_alternative(email_html, 'text/html')
-
-    email.send()
-    return None
+        email.send()
+        return None
         # except Exception as e:
         #     return JsonResponse({"details":"No data found","msg":"Something went wrong please try again !"})
 
