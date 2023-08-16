@@ -1,6 +1,6 @@
 
 import os
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 
 from langchain.llms import OpenAI
 from langchain.chains import LLMChain

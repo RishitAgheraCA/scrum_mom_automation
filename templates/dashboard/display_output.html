@@ -23,8 +23,8 @@
                      <td>{{value.name}}</td>
                      <td><textarea name="task_{{outer_counter}}" cols="30" rows="5">{{ value.task }}</textarea></td>
                      <input type="hidden" name="name_{{outer_counter}}" value="{{ value.name }}">
-                     <td><textarea name="task_{{outer_counter}}" cols="30" rows="5">{{ value.task }}</textarea></td>
-                     <td><textarea name="task_{{outer_counter}}" cols="30" rows="5">{{ value.task }}</textarea></td>
+                     <td><textarea name="task_{{outer_counter}}" cols="30" rows="5">{{ value.blocker }}</textarea></td>
+                     <td><textarea name="task_{{outer_counter}}" cols="30" rows="5">{{ value.deliverable }}</textarea></td>
                  </tr>
              {% endwith %}
             {% endfor %}

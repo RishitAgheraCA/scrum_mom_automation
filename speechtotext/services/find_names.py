@@ -49,14 +49,15 @@ def transcript_to_dictionary(dialogue):
     dictionary = {}
 
     # Iterate through the lines and construct the dictionary
+    counter=1
     for i in range(0, len(lines), 2):
         name_line = lines[i]
         text_line = lines[i + 1]
 
         # Extract name and text
-        name = name_line.split()[0]
+        name = 'speaker ' + str(counter)
         text = text_line
-
+        counter += 1
         # Add to the dictionary
         dictionary[name] = text
 
