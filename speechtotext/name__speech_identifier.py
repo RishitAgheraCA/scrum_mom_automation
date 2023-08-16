@@ -1,6 +1,7 @@
 
 import os,json
-os.environ["OPENAI_API_KEY"] = "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"
+from CONFIG.config import API
+os.environ["OPENAI_API_KEY"] = API
 
 from langchain.llms import OpenAI
 from langchain.chains import LLMChain

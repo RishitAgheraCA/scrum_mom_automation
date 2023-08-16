@@ -1,7 +1,7 @@
 import time
-
+from CONFIG.config import API
 import os
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = API
 
 from langchain.llms import OpenAI
 from langchain.chains import LLMChain
