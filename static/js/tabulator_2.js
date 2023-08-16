@@ -4,16 +4,16 @@ var myList=myVar.replace(/'/g, '"');
 
 var org_list=JSON.parse(myList);
 
-var check_1,check_2,check_3;
-
-var c_task_list=[],blockers_list=[],deliverables_list=[];
+var tables=[]
 
 org_list.forEach(function(element) {
-        check_1 = new Tabulator("#completed_task_"+element.name, {
+        var table_1 = new Tabulator("#completed_task_"+element.name, {
             height:311,
             layout:"fitDataTable",
+
             movableRows:true,
             movableRowsReceiver: "add",
+            movableRowsConnectedTables:['.a'],
             movableRowsSender: "delete",
             placeholder:"No Data set",
             data:[{'task':element.task}],
@@ -22,18 +22,13 @@ org_list.forEach(function(element) {
             ],
         });
 
-//        var c_task_1="#blockers_"+element.name;
-//
-//        var c_task_2="#deliverables_"+element.name;
-//
-//        c_task_list.push(c_task_1);
-//
-//        c_task_list.push(c_task_2)
+        tables.push(table_1)
 
-        check_2 = new Tabulator("#blockers_"+element.name, {
+        var check_2 = new Tabulator("#blockers_"+element.name, {
             height:311,
             layout:"fitDataTable",
             movableRows:true,
+            movableRowsConnectedTables:['.a']
             movableRowsReceiver: "add",
             movableRowsSender: "delete",
             placeholder:"No Data set",
@@ -43,10 +38,11 @@ org_list.forEach(function(element) {
             ],
         });
 
-        check_3 = new Tabulator("#deliverables_"+element.name, {
+        var check_3 = new Tabulator("#deliverables_"+element.name, {
             height:311,
             layout:"fitDataTable",
             movableRows:true,
+            movableRowsConnectedTables:['.a'],
             movableRowsReceiver: "add",
             movableRowsSender: "delete",
             placeholder:"No Data set",
@@ -55,6 +51,7 @@ org_list.forEach(function(element) {
                 {title:"Deliverables", field:"deliverables"},
             ],
         });
+
 });
 
 function getCookie(name) {
@@ -94,28 +91,16 @@ function send_task_load(data){
     });
 }
 
-$("#task_user_email").submit(function(e){
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.target).entries());
+//$("#task_user_email").submit(function(e){
+//    e.preventDefault();
+//    const data = Object.fromEntries(new FormData(e.target).entries());
+//
+//    alertify.confirm("Would you like to send the mail to the users ?",
+//      function(){
+//        send_task_load(data)
+//      },
+//      function(){
+//        alertify.error('Process Canceled');
+//      });
+//});
 
-    alertify.confirm("Would you like to send the mail to the users ?",
-      function(){
-        send_task_load(data)
-      },
-      function(){
-        alertify.error('Process Canceled');
-      });
-});
-
-var tables = document.querySelector(".tabulator");
-var divs = document.querySelectorAll(".my-class");
-
-
-
-var tableSelectors = [];
-
-for (var i = 0; i < tables.length; i++) {
-  tableSelectors.push("#" + tables[i].id);
-}
-
-console.log(tables.length)

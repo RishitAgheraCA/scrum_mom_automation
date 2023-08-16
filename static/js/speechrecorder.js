@@ -18,6 +18,15 @@ stopButton.addEventListener("click", stopRecording);
 pauseButton.addEventListener("click", pauseRecording);
 
 function startRecording() {
+  var imageContainer = document.getElementById("imageContainer");
+  var image = document.createElement("img");
+
+  const imageUrl = document.getElementById('myImage').src;
+
+  image.src = imageUrl;
+  imageContainer.appendChild(image);
+
+
 audioContext.resume()
 /* Simple constraints object, for more advanced audio features see
 context.resume()
@@ -75,6 +84,10 @@ function pauseRecording() {
 
 function stopRecording() {
     console.log("stopButton clicked");
+
+    var container = document.getElementById("imageContainer");
+    container.innerHTML = "";
+
     //disable the stop button, enable the record too allow for new recordings
     stopButton.disabled = true;
     recordButton.disabled = false;
@@ -85,7 +98,7 @@ function stopRecording() {
     rec.stop(); //stop microphone access
     gumStream.getAudioTracks()[0].stop();
     //create the wav blob and pass it on to createDownloadLink
-    rec.exportWAV(createDownloadLink);
+     rec.exportWAV(createDownloadLink);
 }
 
 
@@ -111,6 +124,29 @@ function createDownloadLink(blob) {
     //add the li element to the ordered list
     recordingsList.appendChild(li);
 
+    //for label
+    var label = document.createElement('label');
+    label.setAttribute('for', 'num_users');
+    label.innerHTML = 'Number of Participants';
+
+    li.appendChild(label)
+
+    //For select tag
+    var select = document.createElement('select');
+
+    select.setAttribute('name', 'num_users');
+
+    select.setAttribute('id','participants')
+
+    for (var i = 1; i <= 10; i++) {
+      var option = document.createElement('option');
+      option.value = i;
+      option.text = i;
+      select.appendChild(option);
+    }
+
+    li.appendChild(select)
+
     //upload file code
 
     var filename = `${getDateTime()}.wav`;
@@ -134,8 +170,9 @@ function createDownloadLink(blob) {
 //        xhr.send(fd);
         var form = new FormData();
         form.append("audio_data", blob, filename);
-        form.append("csrfmiddlewaretoken",$("#csrf").val())
-        form.append("filename",filename)
+        form.append("csrfmiddlewaretoken",$("#csrf").val());
+        form.append("filename",filename);
+        form.append("num_users",$('#participants').val());
         $.ajax(
         {
             url: '../transcribe/speechtotext/',
@@ -162,3 +199,25 @@ function getDateTime(){
     const dateTime = `${cd.getDate()}-${cd.getMonth()}-${cd.getFullYear()} ${cd.getHours()}-${cd.getMinutes()}-${cd.getSeconds()}`;
     return dateTime
 }
+
+Dropzone.options.myDropzone = {
+  url: '../transcribe/upload/', // The URL where the files will be uploaded
+  paramName: "file", // The name of the file parameter
+  maxFiles: 1, // Maximum number of files allowed
+  acceptedFiles: ".mp3,.wav", // Accepted file types
+  init: function() {
+      this.on("sending", function(file, xhr, formData) {
+          var csrftoken = $("#csrf").val();
+          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        });
+    this.on("success", function(file, response) {
+      // Handle the successful upload
+      alertify.success("File uploaded successfully");
+      createDownloadLink(file)
+    });
+    this.on("error", function(file, errorMessage) {
+      // Handle the upload error
+      console.log("Error uploading file: " + errorMessage);
+    });
+  }
+};

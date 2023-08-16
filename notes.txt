@@ -1,0 +1,5 @@
+1. GIF LOADER AFTER RECORD BUTTON IS PRESSED
+2. POP How many users are their? Before submitting (radio buttons)
+3. MEIN URL SIDE for BAR
+4. About must include user profile
+5. Calendar instead of table

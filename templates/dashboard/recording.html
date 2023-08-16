@@ -3,20 +3,28 @@
 {% block content %}
 
 <div class="content" id="replace">
-<div id="controls">
+<div id="controls" style="padding-left:10%">
     <h3>Record New Standup Meeting</h3>
     <button class="btn btn-success" id="recordButton">Record</button>
     <button class="btn btn-success" id="pauseButton" disabled>Pause</button>
     <button class="btn btn-success" id="stopButton" disabled>Stop</button>
     <input type="text" id="csrf" hidden value="{{csrf_token}}">
 </div>
-
-<ol id="recordingsList"></ol>
+<!--<div id="imageContainer" style="display: flex;justify-content: center;align-items: center;height: 80vh;">-->
+<!--</div>-->
+<div id="imageContainer" style="display: flex;justify-content: center;align-items: center;">
 
 </div>
+<img id="myImage" src="{% static 'audio_gif.gif' %}" style="display: none;">
+
+<ol id="recordingsList"></ol>
+    <div id="myDropzone" class="dropzone"></div>
+</div>
+
 {% endblock %}
 
 {% block js %}
-<script src="{% static 'js/manage-audio.js' %}"></script>
+    <script src="{% static 'js/manage-audio.js' %}"></script>
     <script src="{% static 'js/speechrecorder.js' %}"></script>
+<!--    <script src="{% static 'js/dropzone_fileupload.js' %}"></script>-->
 {% endblock %}

@@ -2,7 +2,8 @@ from email.mime.image import MIMEImage
 from pathlib import Path
 
 from django.contrib.sites.models import Site
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 from django.utils.html import strip_tags
 from django.views import View
 from django.http import HttpResponse
@@ -10,6 +11,10 @@ from django.http import JsonResponse
 from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
 from django.conf import settings
 from django.template.loader import render_to_string
+from json import dumps
+from datetime import datetime, timedelta
+
+
 from speechtotext.task_identifier import identifyTasks
 import os
 
@@ -84,8 +89,12 @@ class TableView(View):
         details = []
         print(persons, tasks)
 
-        names_and_contexts = dict(zip(persons,tasks ))
-        results = identifyTasks(names_and_contexts)
+        names_and_contexts = dict(zip(persons,tasks))
+
+        try:
+            results = identifyTasks(names_and_contexts)
+        except:
+            results = {'speaker':'no data found'}
         print('results::::::::::::::', results)
         for counter in range(0,no_person):
             details.append({'name':persons[counter],"email": "sahil@fakemail.com","task":tasks[counter], "Emp_num": '001',
@@ -93,7 +102,7 @@ class TableView(View):
 
         # import code
         # code.interact(local=dict(globals(), **locals()))
-        results = identifyTasks(names_and_contexts)
+        # results = identifyTasks(names_and_contexts)
         print('results::::::::::::::', results)
         details = []
         for name,tasks in results.items():
@@ -208,3 +217,68 @@ def send_mail(request,data):
         # except Exception as e:
         #     return JsonResponse({"details":"No data found","msg":"Something went wrong please try again !"})
 
+class UserProfileView(View):
+    def get(self, request):
+        details = [
+            {"name": "Sahil", "email": "sahil@yopmail.com","role":"Front End Web Developer","profile_img":"sahil.jpg"},
+            {"name": "Krishna", "email": "Krishna@yopmail.com","role":"Data Scientist","profile_img":"krishna.jpg"},
+            {"name": "Ritesh", "email": "Ritesh@yopmail.com","role":"NLP Engineer","profile_img":"ritesh.jpg"},
+            {"name": "Rishit", "email": "Rishit@yopmail.com","role":"Team Lead","profile_img":"rishit.jpg"},
+            {"name": "Saramsa", "email": "Saramsa@yopmail.com","role":"Full Stack Developer","profile_img":"saramsa.jpg"},
+        ]
+
+        return render(request, 'dashboard/user_profile.html', {'data': details})
+
+class CalendarView(View):
+    def get(self,request):
+        details = [
+            {"name": "Sahil", "email": "sahil@yopmail.com", "task": "Write email series",
+             "blockers": 'Ran into email series prob', "deliverables": "Automated email series","deadline":"2023-07-31"},
+            {"name": "Krishna", "email": "Krishna@yopmail.com", "task": "Build Free trial Form",
+             "blockers": 'Error in nav bars', "deliverables": "Multi dynamic trail forms","deadline":"2023-08-01"},
+            {"name": "Ritesh", "email": "Ritesh@yopmail.com", "task": "Write monthly Newsletter",
+             "blockers": 'Content was vauge at some times', "deliverables": "Monthly news letter","deadline":"2023-08-02"},
+            {"name": "Rishit", "email": "Rishit@yopmail.com", "task": "Work on Home page",
+             "blockers": "To navigate the items", "deliverables": "Responsive home page","deadline":"2023-08-02"},
+            {"name": "Saramsa", "email": "Saramsa@yopmail.com", "task": "make the layout responsive",
+             "blockers": "To use and integrate bootstrap", "deliverables": "Mobile friendly view","deadline":"2023-08-07"},
+        ]
+
+        result = {'Krishna': 'Presentation,Report,3,Citation','Alex': 'Coding part of the project,Documentation,2,No significant challenges yet.'}
+
+        check = []
+
+        for k,v in result.items():
+            temp_dict = {}
+            temp_result = v.split(',')
+            temp_dict['name']=k
+            temp_dict['completed_task'] = temp_result[0]
+            temp_dict['ongoing_task'] =temp_result[1]
+            offset = int(temp_result[2])
+
+            days_req = self.get_date_offset(offset)
+
+            temp_dict['days_req']= days_req
+            temp_dict['blockers'] = temp_result[3]
+
+
+            check.append(temp_dict)
+
+        dataJSON = dumps(check)
+        # return HttpResponse(dataJSON)
+        return render(request, 'dashboard/calendar_task.html', {'data': check})
+
+    def get_date_offset(self,offset):
+        try:
+            # Get today's date
+            today = datetime.now().date()
+
+            # Calculate the new date by adding the offset
+            new_date = today + timedelta(days=offset)
+
+            # Format the new date as a string
+            new_date_str = new_date.strftime("%Y-%m-%d")
+
+            return new_date_str
+        except Exception as e:
+            return str(e)

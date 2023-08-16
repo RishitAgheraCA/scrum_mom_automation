@@ -1,6 +1,7 @@
+import time
 
 import os
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 
 from langchain.llms import OpenAI
 from langchain.chains import LLMChain
@@ -37,5 +38,6 @@ def identifyTasks(names_and_contexts):
     for name, context in names_and_contexts.items():
         result = identifySingleTask(context)
         results[name] = result
+        time.sleep(2)
 
     return results
