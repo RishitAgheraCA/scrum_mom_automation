@@ -54,7 +54,7 @@ class SpeechToTextView(View):
         #     dict.update({'text':text_output})
 
         """Large audio file Transcriber"""
-        filename='16-7-2023 20-40-20.wav'
+        # filename='16-7-2023 20-40-20.wav'
         path = f'speechtotext/services/recordings/{filename}'
         r = LargeTranslate()
         text_output = r.get_large_audio_transcription_on_silence(path, filename)
