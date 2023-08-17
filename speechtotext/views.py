@@ -54,7 +54,7 @@ class SpeechToTextView(View):
         #     dict.update({'text':text_output})
 
         """Large audio file Transcriber"""
-        # filename='dummy.wav'
+        filename='16-7-2023 20-40-20.wav'
         path = f'speechtotext/services/recordings/{filename}'
         r = LargeTranslate()
         text_output = r.get_large_audio_transcription_on_silence(path, filename)
@@ -122,7 +122,7 @@ class SpeechToTextView(View):
         been in the industry for over a decade, specializing in network security and penetration testing. I'm all about 
         keeping our digital world safe from threats. Great to be a part of this conversation! """
 
-        final_dict = identify_speaker(context)
+        final_dict = identify_speaker(dicts['text'])
         print('response from api 1:',final_dict)
         # final_dict = {'John':'I have done Login page development. And I will deliver the signup module this Friday. I '
         #                      'have no blocker.',

@@ -1,4 +1,5 @@
 URL = window.URL || window.webkitURL;
+$('.loader').hide()
 var gumStream;
 //stream from getUserMedia()
 var rec;
@@ -156,6 +157,7 @@ function createDownloadLink(blob) {
     upload.href = "#";
     upload.classList.add('btn');
     upload.classList.add('btn-success');
+    upload.classList.add('sbmt');
     upload.innerHTML = "Submit";
     upload.addEventListener("click", function(event) {
 //        var xhr = new XMLHttpRequest();
@@ -180,9 +182,13 @@ function createDownloadLink(blob) {
             data: form,
             contentType: false,
             processData: false,
+            beforeSend: function() {
+                $('#recordingsList').hide();
+                $('.loader').show();
+            },
             success: function(getData)
             {
-                console.log(getData);
+                $('.loader').hide()
                 $('#replace').html(getData)
 //                let element = document.getElementById('recordingsList');
 //                element.insertAdjacentText('afterend', getData.text);

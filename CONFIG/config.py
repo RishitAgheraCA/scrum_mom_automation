@@ -32,4 +32,4 @@ MODEL_OUTPUT = {
                 "blockers": "",
                 "deliverables": ""},
 }
-API="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"
+API="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"

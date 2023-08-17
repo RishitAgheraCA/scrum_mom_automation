@@ -10,7 +10,8 @@ from langchain import PromptTemplate
 # Setting up the template and chain
 demo_template = '''
 context = ({context_data}).
-identify name of the speaker and their speech from above conversation and make it in json format
+identify name of the persons and their speech from above text and make it in json format.
+Answer formate should be like each person name is key and speech is value.
 '''
 
 prompt = PromptTemplate(
