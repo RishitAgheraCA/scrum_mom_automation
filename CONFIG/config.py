@@ -32,8 +32,6 @@ MODEL_OUTPUT = {
                 "blockers": "",
                 "deliverables": ""},
 }
-<<<<<<< HEAD
 
-
-API="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"
+API=""
 
